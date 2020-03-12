@@ -12,14 +12,15 @@ public class Start {
     public static void main(String[] args) {
         int q = 1;
         int size = 0;
+        long waitMin = 5;
         UrlCrawBoke urlCrawBoke = new UrlCrawBoke();
         while (true){
             try {
                 System.out.println("程序第"+q+"次执行");
                 size = urlCrawBoke.start() + size;
-                System.out.println("累计刷新"+q+"次！增加访问量："+size+"等待60s再次刷新");
+                System.out.println("本次累计刷新"+q+"次！增加访问量："+size+"！等待"+waitMin+"分钟再次刷新");
                 q++;
-                Thread.sleep(60000);
+                Thread.sleep(waitMin*60*1000);
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (InterruptedException e) {
