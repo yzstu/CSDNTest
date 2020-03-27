@@ -4,10 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -25,10 +22,12 @@ public class UrlCrawBoke {
 
     public int start() throws IOException, InterruptedException{
 
+        Random random = new Random();
         Set<String> urls = new HashSet<String>();
+        Set<String> doUrls = new HashSet<String>(8);
 
         // ----------------------------------------------遍历每一页 获取文章链接----------------------------------------------
-        final String homeUrl = "https://blog.csdn.net/" + userId + "/article/list/";// 后面加pageNum即可
+        /*final String homeUrl = "https://blog.csdn.net/" + userId + "/article/list/";// 后面加pageNum即可
         int totalPage = 0;
         InputStream is;
         String pageStr;
@@ -60,19 +59,35 @@ public class UrlCrawBoke {
         for (String s:urls) {
             System.out.println(s);
         }
-        System.out.println("打印每个链接完毕");
+        System.out.println("打印每个链接完毕");*/
 
         // ---------------------------------------------------访问每个链接---------------------------------------------------
         int i=0;
-        for (String s:urls) {
+        doUrls.add("https://blog.csdn.net/shouchenchuan5253/article/details/104909818");
+        //doUrls.add("https://blog.csdn.net/shouchenchuan5253/article/details/104898553");
+        doUrls.add("https://blog.csdn.net/shouchenchuan5253/article/details/104887051");
+        doUrls.add("https://blog.csdn.net/shouchenchuan5253/article/details/104924003");
+        doUrls.add("https://blog.csdn.net/shouchenchuan5253/article/details/104933703");
+        doUrls.add("https://blog.csdn.net/shouchenchuan5253/article/details/104951236");
+        doUrls.add("https://blog.csdn.net/shouchenchuan5253/article/details/104964163");
+        doUrls.add("https://blog.csdn.net/shouchenchuan5253/article/details/104994801");
+        doUrls.add("https://blog.csdn.net/shouchenchuan5253/article/details/105027720");
+        doUrls.add("https://blog.csdn.net/shouchenchuan5253/article/details/105043628");
+        doUrls.add("https://blog.csdn.net/shouchenchuan5253/article/details/105105793");
+        doUrls.add("https://blog.csdn.net/shouchenchuan5253/article/details/105119368");
+        for (String s:doUrls) {
 
-            doGet(s);
-            System.out.println("成功访问第" + (++i) + "个链接,共" + urls.size() + "个:" + s);
+            boolean lucky = random.nextBoolean();
+
+            if (lucky){
+                doGet(s);
+                System.out.println("成功访问第" + (++i) + "个链接:" + s);
+            }
         }
 
         // ---------------------------------------------------程序结束---------------------------------------------------
-        System.out.println("运行完毕，本次成功增加访问数：" + urls.size());
-        return urls.size();
+        System.out.println("运行完毕，本次成功增加访问数：" + i+",共有博文"+urls.size()+"篇");
+        return i;
     }
 
     public static InputStream doGet(String urlstr) throws IOException {

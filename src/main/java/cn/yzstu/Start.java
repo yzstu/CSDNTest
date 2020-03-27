@@ -1,6 +1,7 @@
 package cn.yzstu;
 
 import java.io.IOException;
+import java.util.Random;
 
 /**
  * 类描述
@@ -12,9 +13,11 @@ public class Start {
     public static void main(String[] args) {
         int q = 1;
         int size = 0;
-        long waitMin = 5;
+        Random random = new Random();
+        long waitMin;
         UrlCrawBoke urlCrawBoke = new UrlCrawBoke();
         while (true){
+            waitMin = random.nextInt(5) + 1;
             try {
                 System.out.println("程序第"+q+"次执行");
                 size = urlCrawBoke.start() + size;

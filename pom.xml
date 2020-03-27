@@ -6,7 +6,18 @@
 
     <groupId>org.example</groupId>
     <artifactId>CSDNTest</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>forlearnpower</version>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>cn.yzstu.Start</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
